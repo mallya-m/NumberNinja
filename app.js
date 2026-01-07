@@ -36,3 +36,16 @@ function checkGuess(guess){
     }
     guessInput.value  = "";
 }
+
+restartBtn.addEventListener("click", function(){
+    secretNumber = Math.floor(Math.random()*100)+1 ;
+    attempts = 0;
+    gameOver = false ;
+
+    message.textContent = "";
+    attempts.textContent = "";
+    guessInput.value = "";
+
+    guessBtn.disabled = false ;
+    restartBtn.classList.add("hidden");
+});
