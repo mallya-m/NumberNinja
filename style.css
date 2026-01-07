@@ -1,57 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
-    height: 100vh;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fceaff, #e8f3ff);
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
 .game-container {
-    background: #ffffff;
-    padding: 30px;
-    width: 320px;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 2.5rem;
+    width: 340px;
+    border-radius: 18px;
     text-align: center;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.8s ease;
 }
 
-.game-container h1 {
-    margin-bottom: 10px;
+h1 {
+    font-weight: 600;
+    color: #6b5cff;
+    margin-bottom: 0.3rem;
+}
+
+.subtitle {
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 1.2rem;
+}
+
+p {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 1rem;
 }
 
 input {
     width: 100%;
-    padding: 10px;
-    margin: 15px 0;
-    font-size: 16px;
+    padding: 0.7rem;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    outline: none;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    border-color: #6b5cff;
+    box-shadow: 0 0 0 2px rgba(107, 92, 255, 0.2);
 }
 
 button {
-    padding: 10px 20px;
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.7rem;
+    border-radius: 10px;
     border: none;
-    background: #667eea;
-    color: white;
-    font-size: 16px;
+    background: #6b5cff;
+    color: #fff;
+    font-size: 0.95rem;
     cursor: pointer;
-    border-radius: 6px;
+    transition: all 0.3s ease;
 }
 
 button:hover {
-    background: #5a67d8;
+    background: #5a4de0;
+    transform: translateY(-2px);
 }
 
-#message {
-    margin-top: 10px;
-    font-weight: bold;
+button:active {
+    transform: translateY(0);
+}
+
+#restartBtn {
+    background: #ff7a7a;
+}
+
+#restartBtn:hover {
+    background: #ff5c5c;
 }
 
 .hidden {
     display: none;
+}
+
+#message {
+    margin-top: 1rem;
+    font-weight: 500;
+    min-height: 1.2em;
+}
+
+#attempts {
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 0.3rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
