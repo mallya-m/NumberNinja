@@ -28,6 +28,9 @@ function checkGuess(guess){
     if(guess === secretNumber){
         message.textContent = `Correct ! You guessed it in ${attempts} attempts.` ;
         gameOver = true ;
+
+        restartBtn.classList.remove("hidden");
+        guessBtn.disabled = true;
     
     }else if ( guess > secretNumber){
         message.textContent = "Too High ! Try again.";
@@ -42,7 +45,7 @@ restartBtn.addEventListener("click", function(){
     gameOver = false ;
 
     message.textContent = "";
-    attempts.textContent = "";
+    attemptsText.textContent = "";
     guessInput.value = "";
 
     guessBtn.disabled = false ;
