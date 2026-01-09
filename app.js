@@ -1,21 +1,62 @@
 const guessInput = document.getElementById("guessInput");
 const guessBtn = document.getElementById("guessBtn");
+
 const message = document.getElementById("message");
 const attemptsText = document.getElementById("attempts");
 const restartBtn = document.getElementById("restartBtn");
 
-let secretNumber = Math.floor(Math.random() * 100) + 1;
+const minInput = document.getElementById("minRange");
+const maxInput = document.getElementById("maxRange");
+const setRangeBtn = document.getElementById("setRangeBtn");
+
+let min = null;
+let max =  null ;
+let secretNumber = null ;
 let attempts = 0;
 let gameOver = false;
 
-// 🔹 MAIN GAME LOGIC
+//Range Setup Logic
+
+setRangeBtn.addEventListener("click",()=>{
+    min = Number(minInput.value);
+    max= Number(maxInput.value);
+    //Validation
+    if(isNaN(min) || isNaN(max) || min >= max){
+        message.textContent = "Enter a valid range( Min < Max )";
+        return ;
+    }
+    //Game logic
+    secretNumber = Math.floor(Math.random()*(max-min+1)) + min ;
+    attempts = 0 ;
+    gameOver = false ;
+
+    message.textContent = `Guess a number between ${min} and ${max}`;
+    attemptsText.textContent = "";
+
+    guessInput.disabled = false ;
+    guessBtn.disabled = false ;
+    guessInput.focus();
+
+    restartBtn.classList.add("hidden");
+});
+
+//Guess handling
+
+guessBtn.addEventListener("click", handleGuess);
+
+guessInput.addEventListener("keydown", (e)=>{
+    if(e.key === "Enter"){
+        handleGuess();
+    }
+});
+
 function handleGuess() {
     if (gameOver) return;
 
     const userGuess = Number(guessInput.value);
 
-    if (!userGuess || userGuess < 1 || userGuess > 100) {
-        message.textContent = " Enter a number between 1 and 100";
+    if (!userGuess || userGuess < min || userGuess > max) {
+        message.textContent =  `Enter a number between ${min} and ${max}`;
         message.className = "error";
         return;
     }
@@ -26,17 +67,7 @@ function handleGuess() {
     checkGuess(userGuess);
 }
 
-// 🔹 BUTTON CLICK
-guessBtn.addEventListener("click", handleGuess);
-
-// 🔹 ENTER KEY SUPPORT
-guessInput.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-        handleGuess();
-    }
-});
-
-// 🔹 CHECK GUESS
+// CHECK GUESS
 function checkGuess(guess) {
     if (guess === secretNumber) {
         message.textContent = ` Correct! You guessed it in ${attempts} attempts.`;
@@ -60,7 +91,7 @@ function checkGuess(guess) {
     guessInput.value = "";
 }
 
-// 🔹 SHAKE ANIMATION
+//  SHAKE ANIMATION
 function triggerShake() {
     guessInput.classList.add("shake");
     setTimeout(() => {
@@ -68,17 +99,23 @@ function triggerShake() {
     }, 300);
 }
 
-// 🔹 RESTART GAME
+//  RESTART GAME
 restartBtn.addEventListener("click", function () {
-    secretNumber = Math.floor(Math.random() * 100) + 1;
+    minInput.value = "";
+    maxInput.value = "";
+    guessInput.value = "";
+
+    guessInput.disabled = true ;
+    guessBtn.disabled = true ;
+
     attempts = 0;
     gameOver = false;
 
-    message.textContent = "";
+    message.textContent = "Set a new range to start agian";
     message.className = "";
     attemptsText.textContent = "";
-    guessInput.value = "";
 
-    guessBtn.disabled = false;
+    min = max = secretNumber = null ;
+
     restartBtn.classList.add("hidden");
 });
