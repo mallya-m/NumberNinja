@@ -15,6 +15,8 @@ body {
     justify-content: center;
 }
 
+/* ---------------- GAME CARD ---------------- */
+
 .game-container {
     background: rgba(255, 255, 255, 0.85);
     padding: 2.5rem;
@@ -32,16 +34,9 @@ h1 {
 }
 
 .subtitle {
-    font-weight: 400;
     font-size: 0.9rem;
     color: #777;
     margin-bottom: 1.2rem;
-}
-.range-box{
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    margin-bottom: 1rem;
 }
 
 p {
@@ -49,17 +44,27 @@ p {
     color: #555;
     margin-bottom: 1rem;
 }
-.input-box{
+
+/* ---------------- RANGE INPUT ---------------- */
+
+.range-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+}
+
+.input-box {
     display: flex;
     gap: 0.5rem;
-    
 }
+
 .input-box input {
-    flex:1 ;
+    flex: 1;
 }
-.range-box button{
-    width: 100%;
-}
+
+/* ---------------- INPUTS & BUTTONS ---------------- */
+
 input {
     width: 100%;
     padding: 0.7rem;
@@ -93,13 +98,11 @@ button:hover {
     transform: translateY(-2px);
 }
 
-button:active {
-    transform: translateY(0);
-}
-button:disabled{
+button:disabled {
     background: #c7c7c7;
     cursor: not-allowed;
 }
+
 #restartBtn {
     background: #ff7a7a;
 }
@@ -113,7 +116,6 @@ button:disabled{
 }
 
 #message {
-    margin-top: 1rem;
     font-weight: 500;
     min-height: 1.2em;
 }
@@ -121,7 +123,28 @@ button:disabled{
 #attempts {
     font-size: 0.85rem;
     color: #888;
-    margin-top: 0.3rem;
+}
+
+/* ---------------- FEEDBACK ---------------- */
+
+.success {
+    color: #2e7d32;
+}
+
+.error {
+    color: #c62828;
+}
+
+.shake {
+    animation: shake 0.3s;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
 }
 
 @keyframes fadeIn {
@@ -134,21 +157,68 @@ button:disabled{
         transform: translateY(0);
     }
 }
-.shake {
-    animation: shake 0.3s;
+
+/* ---------------- THEME TOGGLE ---------------- */
+
+.theme-switch {
+    position: fixed;
+    top: 1.2rem;
+    right: 1.2rem;
 }
 
-@keyframes shake {
-    0% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    50% { transform: translateX(5px); }
-    75% { transform: translateX(-5px); }
-    100% { transform: translateX(0); }
-}
-.success {
-    color: #2e7d32;
+.theme-btn {
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid #ddd;
+    background: transparent;
+    color: #555;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
 }
 
-.error {
-    color: #c62828;
+.theme-btn:hover {
+    background: #f3f4f6;
+}
+
+/* ---------------- DARK MODE ---------------- */
+
+body.dark {
+    background: linear-gradient(135deg, #0f172a, #020617);
+}
+
+body.dark .game-container {
+    background: rgba(30, 41, 59, 0.95);
+}
+
+body.dark h1 {
+    color: #a5b4fc;
+}
+
+body.dark p,
+body.dark .subtitle {
+    color: #cbd5f5;
+}
+
+body.dark input {
+    background: #020617;
+    border-color: #334155;
+    color: #e5e7eb;
+}
+
+body.dark input::placeholder {
+    color: #64748b;
+}
+
+body.dark button {
+    background: #6366f1;
+}
+
+body.dark button:hover {
+    background: #4f46e5;
+}
+
+body.dark .theme-btn {
+    color: #e5e7eb;
+    border-color: #475569;
 }
