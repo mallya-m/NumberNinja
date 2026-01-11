@@ -1,35 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NumberNinja</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+    <!-- Theme Toggle -->
+    <div class="theme-switch">
+        <button id="themeToggle" class="theme-btn">Dark Mode</button>
+    </div>
+
+    <!-- Game Container -->
     <div class="game-container">
         <h1>NumberNinja</h1>
         <p class="subtitle">Choose your range and guess the number</p>
 
+        <!-- Range Setup -->
         <div class="range-box">
             <div class="input-box">
-                <input type="number" id="minRange" placeholder="Min">
-                <input type="number" id="maxRange" placeholder="Max">
+                <input type="number" id="minRange" placeholder="Min" />
+                <input type="number" id="maxRange" placeholder="Max" />
             </div>
-            
             <button id="setRangeBtn">Set Range</button>
         </div>
 
-
-        <input type="number" id = "guessInput" placeholder="Enter your guess">
-        <button id="guessBtn">Guess</button>
+        <!-- Guess Section -->
+        <input type="number" id="guessInput" placeholder="Enter your guess" disabled />
+        <button id="guessBtn" disabled>Guess</button>
 
         <p id="message"></p>
         <p id="attempts"></p>
 
-        <button id="restartBtn"  class="hidden">Restart Game</button>
+        <button id="restartBtn" class="hidden">Restart Game</button>
     </div>
+
     <script src="app.js"></script>
-    
 </body>
 </html>
